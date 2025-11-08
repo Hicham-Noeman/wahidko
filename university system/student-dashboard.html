@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - EduPlatform</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="student-dashboard">
+    <header class="header">
+        <div class="container">
+            <div class="logo">🎓 EduPlatform</div>
+            <nav class="nav">
+                <span id="userInfo" class="user-info">Student</span>
+                <button onclick="logout()" class="btn btn-secondary">Logout</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="dashboard">
+        <div class="container">
+            <div class="dashboard-header">
+                <h1>Student Dashboard</h1>
+            </div>
+
+            <div class="quick-stats">
+                <div class="stat-card">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Enrolled Courses</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Assignments Due</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">A-</div>
+                    <div class="stat-label">Average Grade</div>
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="main-content">
+                    <div class="widget">
+                        <div class="widget-header">
+                            <h3>My Courses</h3>
+                        </div>
+                        <div class="course-list">
+                            <div class="course-card">
+                                <h4>Web Development</h4>
+                                <p>Learn HTML, CSS, and JavaScript</p>
+                                <div class="course-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress" style="width: 75%"></div>
+                                    </div>
+                                    <span>75% Complete</span>
+                                </div>
+                                <button class="btn btn-primary btn-sm">Continue</button>
+                            </div>
+                            <div class="course-card">
+                                <h4>Data Science</h4>
+                                <p>Python, Statistics, and Machine Learning</p>
+                                <div class="course-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress" style="width: 40%"></div>
+                                    </div>
+                                    <span>40% Complete</span>
+                                </div>
+                                <button class="btn btn-primary btn-sm">Continue</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="widget">
+                        <div class="widget-header">
+                            <h3>Recent Assignments</h3>
+                        </div>
+                        <div class="assignments-list">
+                            <div class="assignment-item">
+                                <span>Web Development Project</span>
+                                <span class="due-date">Due: Tomorrow</span>
+                            </div>
+                            <div class="assignment-item">
+                                <span>Data Analysis Report</span>
+                                <span class="due-date">Due: 3 days</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+<div class="sidebar">
+                    <div class="widget">
+                        <div class="widget-header">
+                            <h3>Schedule</h3>
+                        </div>
+                        <div class="schedule">
+                            <div class="schedule-item">
+                                <strong>10:00 AM</strong>
+                                <span>Web Development Class</span>
+                            </div>
+                            <div class="schedule-item">
+                                <strong>2:00 PM</strong>
+                                <span>Data Science Lab</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="widget">
+    <div class="widget-header">
+        <h3>Chatbot Assistant</h3>
+    </div>
+    <div class="chatbot-widget">
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot-message">
+                Hello! I'm your education assistant. How can I help you today?
+            </div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="chatInput" placeholder="Type your message here...">
+            <button onclick="sendMessage()" class="btn btn-primary">Send</button>
+        </div>
+    </div>
+</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,316 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - EduPlatform</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="admin-dashboard">
+    <header class="header">
+        <div class="container">
+            <div class="logo">🎓 EduPlatform</div>
+            <nav class="nav">
+                <span id="userInfo" class="user-info">Admin</span>
+                <button onclick="logout()" class="btn btn-secondary logout-btn">Logout</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="dashboard">
+        <div class="container">
+            <div class="dashboard-header">
+                <h1>Admin Dashboard</h1>
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="systemSettings()">System Settings</button>
+                </div>
+            </div>
+
+            <div class="quick-stats">
+                <div class="stat-card">
+                    <div class="stat-number">450</div>
+                    <div class="stat-label">Total Users</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">25</div>
+                    <div class="stat-label">Active Courses</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">15</div>
+                    <div class="stat-label">Instructors</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">System Status</div>
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="main-content">
+                    <!-- User Management Widget -->
+                    <div class="widget">
+                        <div class="widget-header">
+                            <h3>User Management</h3>
+                            <button class="btn btn-success btn-sm" onclick="showAddUserForm()">+ Add User</button>
+                        </div>
+                        
+                        <div class="data-table">
+                            <table style="width: 100%; border-collapse: collapse;">
+                                <thead>
+                                    <tr style="background: #f8f9fa;">
+                                        <th style="padding: 1rem; text-align: left;">ID</th>
+                                        <th style="padding: 1rem; text-align: left;">Name</th>
+                                        <th style="padding: 1rem; text-align: left;">Email</th>
+                                        <th style="padding: 1rem; text-align: left;">Role</th>
+                                        <th style="padding: 1rem; text-align: left;">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="usersTableBody">
+                                    <!-- Users will be loaded here dynamically -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- System Analytics Widget -->
+                    <div class="widget">
+                        <div class="widget-header">
+                            <h3>System Analytics</h3>
+                        </div>
+                        <div class="analytics-container">
+                            <div class="analytics-grid">
+                                <div class="analytics-card">
+                                    <div class="analytics-icon">👥</div>
+                                    <div class="analytics-content">
+
+<div class="analytics-value">245</div>
+                                        <div class="analytics-label">Active Users</div>
+                                    </div>
+                                </div>
+                                <div class="analytics-card">
+                                    <div class="analytics-icon">💾</div>
+                                    <div class="analytics-content">
+                                        <div class="analytics-value">2.5GB</div>
+                                        <div class="analytics-label">Storage Used</div>
+                                        <div class="analytics-progress">
+                                            <div class="progress-bar">
+                                                <div class="progress-fill" style="width: 25%"></div>
+                                            </div>
+                                            <span>25% of 10GB</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="analytics-card">
+                                    <div class="analytics-icon">🖥️</div>
+                                    <div class="analytics-content">
+                                        <div class="analytics-value status-online">Online</div>
+                                        <div class="analytics-label">Server Status</div>
+                                        <div class="analytics-detail">Uptime: 99.8%</div>
+                                    </div>
+                                </div>
+                                <div class="analytics-card">
+                                    <div class="analytics-icon">📊</div>
+                                    <div class="analytics-content">
+                                        <div class="analytics-value">1,245</div>
+                                        <div class="analytics-label">Daily Requests</div>
+                                        <div class="analytics-detail">+12% from yesterday</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar">
+                    <div class="widget">
+                        <div class="widget-header">
+                            <h3>Quick Actions</h3>
+                        </div>
+                        <div class="quick-actions">
+                            <button class="btn btn-secondary btn-block" onclick="backupSystem()">Backup System</button>
+                            <button class="btn btn-secondary btn-block" onclick="viewLogs()">View Logs</button>
+                            <button class="btn btn-secondary btn-block" onclick="manageRoles()">Manage Roles</button>
+                        </div>
+                    </div>
+
+                    <div class="widget">
+                        <div class="widget-header">
+                            <h3>Chatbot Assistant</h3>
+                        </div>
+                        <div class="chatbot-widget">
+                            <div class="chat-messages" id="chatMessages">
+                                <div class="message bot-message">
+                                    Hello! I'm your education assistant. How can I help you today?
+                                </div>
+                            </div>
+                            <div class="chat-input">
+                                <input type="text" id="chatInput" placeholder="Type your message here...">
+                                <button onclick="sendMessage()" class="btn btn-primary">Send</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+<!-- User Form Modal -->
+    <div id="userForm" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Add New User</h3>
+                <button onclick="hideUserForm()" class="close-btn">&times;</button>
+            </div>
+            
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" id="userName" class="form-control" placeholder="Enter full name">
+            </div>
+            
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="userEmail" class="form-control" placeholder="Enter email address">
+            </div>
+            
+            <div class="form-group">
+                <label>Role</label>
+                <select id="userRole" class="form-control">
+                    <option value="student">Student</option>
+                    <option value="instructor">Instructor</option>
+                    <option value="coordinator">Coordinator</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </div>
+            
+            <input type="hidden" id="userId">
+            
+            <div class="modal-actions">
+                <button class="btn btn-primary" onclick="saveUser()">Save User</button>
+                <button class="btn btn-secondary" onclick="hideUserForm()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- System Settings Modal -->
+    <div id="systemSettingsModal" class="modal">
+        <div class="modal-content large-modal">
+            <div class="modal-header">
+                <h3>System Settings</h3>
+                <button onclick="hideSystemSettings()" class="close-btn">&times;</button>
+            </div>
+            
+            <div class="settings-tabs">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" onclick="openTab(event, 'generalTab')">General</button>
+                    <button class="tab-btn" onclick="openTab(event, 'securityTab')">Security</button>
+                    <button class="tab-btn" onclick="openTab(event, 'backupTab')">Backup</button>
+                    <button class="tab-btn" onclick="openTab(event, 'logsTab')">Logs</button>
+                </div>
+                
+                <div id="generalTab" class="tab-content active">
+                    <div class="form-group">
+                        <label>Platform Name</label>
+                        <input type="text" class="form-control" value="EduPlatform">
+                    </div>
+                    <div class="form-group">
+                        <label>Default Language</label>
+                        <select class="form-control">
+                            <option>English</option>
+                            <option>Arabic</option>
+                            <option>French</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Time Zone</label>
+                        <select class="form-control">
+                            <option>UTC+0</option>
+                            <option>UTC+3 (Middle East)</option>
+                            <option>UTC+1 (Europe)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div id="securityTab" class="tab-content">
+                    <div class="form-group">
+                        <label>Password Policy</label>
+                        <select class="form-control">
+                            <option>Standard (6+ characters)</option>
+                            <option>Strong (8+ characters with symbols)</option>
+                        </select>
+
+
+</div>
+                    <div class="form-group">
+                        <label>Session Timeout</label>
+                        <select class="form-control">
+                            <option>30 minutes</option>
+                            <option>1 hour</option>
+                            <option>2 hours</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" checked> Require Two-Factor Authentication for Admins
+                        </label>
+                    </div>
+                </div>
+                
+                <div id="backupTab" class="tab-content">
+                    <div class="backup-options">
+                        <div class="form-group">
+                            <label>Backup Frequency</label>
+                            <select class="form-control">
+                                <option>Daily</option>
+                                <option>Weekly</option>
+                                <option>Monthly</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Backup Storage</label>
+                            <select class="form-control">
+                                <option>Local Server</option>
+                                <option>Cloud Storage</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-primary" onclick="performBackup()">Create Backup Now</button>
+                    </div>
+                </div>
+                
+                <div id="logsTab" class="tab-content">
+                    <div class="logs-container">
+                        <div class="logs-header">
+                            <h4>System Logs</h4>
+                            <button class="btn btn-secondary btn-sm">Export Logs</button>
+                        </div>
+                        <div class="logs-list">
+                            <div class="log-entry">
+                                <span class="log-time">2023-11-15 10:30:45</span>
+                                <span class="log-level info">INFO</span>
+                                <span class="log-message">System backup completed successfully</span>
+                            </div>
+                            <div class="log-entry">
+                                <span class="log-time">2023-11-15 09:15:22</span>
+                                <span class="log-level warning">WARNING</span>
+                                <span class="log-message">High memory usage detected</span>
+                            </div>
+                            <div class="log-entry">
+                                <span class="log-time">2023-11-15 08:05:10</span>
+                                <span class="log-level error">ERROR</span>
+                                <span class="log-message">Failed to connect to database</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-actions">
+                <button class="btn btn-primary" onclick="saveSystemSettings()">Save Settings</button>
+                <button class="btn btn-secondary" onclick="hideSystemSettings()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
