@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Installation Guide - EduPlatform</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <style>
+        .installation-guide {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+        .step {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 1rem;
+            border-left: 4px solid #667eea;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .step h2 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+        .code-block {
+            background: #f8fafc;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid #e2e8f0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        .credential-box {
+            background: #f0fdf4;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            border: 2px solid #10b981;
+            margin: 1rem 0;
+        }
+        .warning-box {
+            background: #fef2f2;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            border: 2px solid #ef4444;
+            margin: 1rem 0;
+        }
+        .success-box {
+            background: #f0fdf4;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            border: 2px solid #10b981;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">🎓 EduPlatform</div>
+            <nav class="nav">
+                <a href="pages/index.html" class="btn btn-primary">Go to Home</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="installation-guide">
+        <h1 style="text-align: center; margin-bottom: 2rem;">🚀 Installation Guide</h1>
+
+        <div class="step">
+            <h2>📋 Step 1: Prerequisites</h2>
+            <p>Make sure you have the following installed:</p>
+            <ul style="margin-left: 2rem;">
+                <li>✅ XAMPP (or any LAMP/WAMP stack)</li>
+                <li>✅ PHP 7.4 or higher</li>
+                <li>✅ MySQL 5.7 or higher</li>
+                <li>✅ Modern web browser (Chrome, Firefox, Edge)</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <h2>🗄️ Step 2: Setup Database</h2>
+            <ol style="margin-left: 2rem;">
+                <li><strong>Start XAMPP</strong>
+                    <ul>
+                        <li>Open XAMPP Control Panel</li>
+                        <li>Start Apache and MySQL services</li>
+                    </ul>
+                </li>
+                <li><strong>Create Database</strong>
+                    <ul>
+                        <li>Open browser and go to: <code>http://localhost/phpmyadmin</code></li>
+                        <li>Click "New" in the left sidebar</li>
+                        <li>Database name: <code>university_system</code></li>
+                        <li>Collation: <code>utf8mb4_unicode_ci</code></li>
+                        <li>Click "Create"</li>
+                    </ul>
+                </li>
+                <li><strong>Import Schema</strong>
+                    <ul>
+                        <li>Click on the <code>university_system</code> database</li>
+                        <li>Go to "Import" tab</li>
+                        <li>Click "Choose File" and select: <code>database/schema.sql</code></li>
+                        <li>Click "Go" at the bottom</li>
+                        <li>Wait for success message</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+
+        <div class="step">
+            <h2>⚙️ Step 3: Configure Application</h2>
+            <p>The application should work with default settings if XAMPP is installed in the default location.</p>
+            <p>If needed, update database credentials in <code>php/config.php</code>:</p>
+            <div class="code-block">
+define('DB_HOST', 'localhost');<br>
+define('DB_NAME', 'university_system');<br>
+define('DB_USER', 'root');<br>
+define('DB_PASS', '');
+            </div>
+        </div>
+
+        <div class="step">
+            <h2>🌐 Step 4: Access the Application</h2>
+            <ol style="margin-left: 2rem;">
+                <li>Open your web browser</li>
+                <li>Navigate to: <div class="code-block">http://localhost/wahidko/university%20system/pages/index.php</div></li>
+                <li>You should see the landing page</li>
+                <li>Click "Login" to access the system</li>
+            </ol>
+        </div>
+
+        <div class="step">
+            <h2>🔐 Step 5: Demo Credentials</h2>
+            <div class="credential-box">
+                <h3 style="color: #10b981; margin-bottom: 1rem;">Available Demo Accounts:</h3>
+                <table style="width: 100%; border-collapse: collapse;">
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 0.5rem;"><strong>Student:</strong></td>
+                        <td style="padding: 0.5rem;">student@edu.com</td>
+                        <td style="padding: 0.5rem;">123456</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 0.5rem;"><strong>Instructor:</strong></td>
+                        <td style="padding: 0.5rem;">instructor@edu.com</td>
+                        <td style="padding: 0.5rem;">123456</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 0.5rem;"><strong>Coordinator:</strong></td>
+                        <td style="padding: 0.5rem;">coordinator@edu.com</td>
+                        <td style="padding: 0.5rem;">123456</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><strong>Admin:</strong></td>
+                        <td style="padding: 0.5rem;">admin@edu.com</td>
+                        <td style="padding: 0.5rem;">123456</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="warning-box">
+                <strong>⚠️ Security Warning:</strong> Change these passwords immediately after first login in production!
+            </div>
+        </div>
+
+        <div class="step">
+            <h2>✨ Features to Explore</h2>
+            <ul style="margin-left: 2rem;">
+                <li>📚 <strong>Course Management</strong> - Create and manage courses</li>
+                <li>👥 <strong>User Management</strong> - Add and manage users (Admin)</li>
+                <li>📝 <strong>Assignments</strong> - Create and submit assignments</li>
+                <li>📊 <strong>Analytics</strong> - View system statistics</li>
+                <li>💬 <strong>AI Chatbot</strong> - Get instant help</li>
+                <li>📅 <strong>Schedule</strong> - View class schedules</li>
+                <li>🎨 <strong>Modern UI</strong> - Beautiful animations and transitions</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <h2>🐛 Troubleshooting</h2>
+            <h3>Database Connection Error</h3>
+            <ul style="margin-left: 2rem;">
+                <li>Ensure MySQL is running in XAMPP</li>
+                <li>Verify database name is correct</li>
+                <li>Check credentials in <code>php/config.php</code></li>
+            </ul>
+
+            <h3>Page Not Found (404)</h3>
+            <ul style="margin-left: 2rem;">
+                <li>Check the URL is correct</li>
+                <li>Ensure files are in the right directory</li>
+                <li>Verify Apache is running</li>
+            </ul>
+
+            <h3>Styles Not Loading</h3>
+            <ul style="margin-left: 2rem;">
+                <li>Clear browser cache (Ctrl+Shift+R)</li>
+                <li>Check browser console for errors</li>
+                <li>Verify CSS file paths are correct</li>
+            </ul>
+        </div>
+
+        <div class="success-box" style="text-align: center;">
+            <h2 style="color: #10b981; margin-bottom: 1rem;">🎉 You're All Set!</h2>
+            <p>Click the button below to start using EduPlatform</p>
+            <a href="pages/login.php" class="btn btn-primary" style="margin-top: 1rem;">Go to Login</a>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 EduPlatform. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
+
